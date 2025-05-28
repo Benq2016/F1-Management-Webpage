@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/js/team-actions.js"></script>
+    <meta charset="UTF-8">
+    <title>Teams</title>
+</head>
+<body>
+    <h1>Teams List</h1>
+    <ul id="teams-list">
+        <li th:each="team : ${teams}"
+            th:attr= "data-team-id=${team.id}, data-team-name=${team.name}">
+            ID: <span th:text="${team.id}"></span> - Name: <span th:text="${team.name}"></span>
+            <button class="delete-team-btn">Delete</button>
+            <button class="manage-team-btn">Manage</button>
+        </li>
+    </ul>
+    <h2>Add New Team</h2>
+    <input type="number" id="add-team-id" placeholder="Team ID" required>
+    <input type="text" id="add-team-name" placeholder="Team Name" required>
+    <button id="add-team-btn">Add</button>
+
+    <a href="/">Back to Homepage</a>
+</body>
+</html>

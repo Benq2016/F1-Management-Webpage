@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mechanics</title>
+</head>
+<body>
+    <h1>Mechanics Page</h1>
+    <ul id="mechanics-list">
+        <li th:each="mechanic : ${mechanics}">
+            ID: <span th:text="${mechanic.id}"></span> - Name: <span th:text="${mechanic.name}"></span> - Team: <span th:text="${mechanic.team.name}"></span>
+        </li>
+    </ul>
+    <a href="/">Back to Homepage</a>
+</body>
+</html>

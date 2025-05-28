@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/js/manage-team-actions.js"></script>
+    <meta charset="UTF-8">
+    <title>Manage Team</title>
+</head>
+<body th:attr="data-team-id=${team.id}">
+    <h1>Team: <span th:text="${team.name}"></span></h1>
+    <button id="change-team-name-btn">Change Team Name</button>
+
+    <h2>Drivers:</h2>
+    <ul id="drivers-list">
+        <li th:each="driver : ${team.drivers}"
+            th:attr= "data-driver-id=${driver.id}, data-driver-name=${driver.name}, data-driver-age=${driver.age}">
+            ID: <span th:text="${driver.id}"></span> - Name: <span th:text="${driver.name}"></span> - Age: <span th:text="${driver.age}"></span>
+            <button class="delete-driver-btn">Delete</button>
+            <button class="update-driver-btn">Update</button>
+        </li>
+    </ul>
+    <h3>Add New Driver</h3>
+    <input type="number" id="add-driver-id" placeholder="Driver ID" required>
+    <input type="text" id="add-driver-name" placeholder="Driver Name" required>
+    <input type="number" id="add-driver-age" placeholder="Driver Age" required>
+    <button id="add-driver-btn">Add Driver</button>
+
+    <h2>Mechanics:</h2>
+    <ul id="mechanics-list">
+        <li th:each="mechanic : ${team.mechanics}"
+            th:attr= "data-mechanic-id=${mechanic.id}, data-mechanic-name=${mechanic.name}, data-mechanic-salary=${mechanic.salary}">
+            ID: <span th:text="${mechanic.id}"></span> - Name: <span th:text="${mechanic.name}"></span> - Salary: <span th:text="${mechanic.salary}"></span>
+            <button class="delete-mechanic-btn">Delete</button>
+            <button class="update-mechanic-btn" >Update</button>
+        </li>
+    </ul>
+    <h3>Add New Mechanic</h3>
+    <input type="number" id="add-mechanic-id" placeholder="Mechanic ID" required>
+    <input type="text" id="add-mechanic-name" placeholder="Mechanic Name" required>
+    <input type="number" id="add-mechanic-salary" placeholder="Mechanic Salary" required>
+    <button id="add-mechanic-btn">Add Mechanic</button>
+
+    <h2>Cars:</h2>
+    <ul id="cars-list">
+        <li th:each="car : ${team.cars}"
+            th:attr= "data-car-id=${car.id}, data-car-model=${car.model}">
+            ID: <span th:text="${car.id}"></span> - Model: <span th:text="${car.model}"></span> - Driver: <span th:text="${car.driver.name}"></span> - Mechanic: <span th:text="${car.mechanic.name}"></span>
+            <button class="delete-car-btn">Delete</button>
+            <button class="update-car-btn">Update</button>
+        </li>
+    </ul>
+    <h3>Add New Car</h3>
+    <input type="number" id="add-car-id" placeholder="Car ID" required>
+    <input type="text" id="add-car-model" placeholder="Car Model" required>
+    <input type="number" id="add-car-driver-id" placeholder="Driver ID" required>
+    <input type="number" id="add-car-mechanic-id" placeholder="Mechanic ID" required>
+    <button id="add-car-btn">Add Car</button>
+
+    <a href="/teams-page">Back to Teams List</a>
+
+</body>
+</html>

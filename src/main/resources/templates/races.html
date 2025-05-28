@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Races</title>
+</head>
+<body>
+    <h1>Races Page</h1>
+    <ul id="races-list">
+        <li th:each="race : ${races}"
+            th:attr="data-race-id=${race.id}">
+            ID: <span th:text="${race.id}"></span> - Name: <span th:text="${race.name}"></span> - Location: <span th:text="${race.location}"></span> - Date: <span th:text="${race.getPrintedDate()}"></span>
+        </li>
+    </ul>
+    <a href="/">Back to Homepage</a>
+</body>
+</html>

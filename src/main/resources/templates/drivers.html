@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drivers</title>
+</head>
+<body>
+    <h1>Drivers List</h1>
+    <ul id="drivers-list">
+        <li th:each="driver : ${drivers}">
+            ID: <span th:text="${driver.id}"></span> - Name: <span th:text="${driver.name}"></span> - Age: <span th:text="${driver.age}"></span> - Team: <span th:text="${driver.team.name}"></span>
+        </li>
+    </ul>
+    <a href="/">Back to Homepage</a>
+</body>
+</html>
