@@ -9,7 +9,7 @@
     <ul id="participations-list">
         <li th:each="participation : ${participations}"
             th:attr="data-participation-car=${participation.car}, data-participation-race=${participation.race}">
-            Race: <span th:text="${participation.race.name}"></span> - Date: <span th:text="${participation.race.getPrintedDate()}"></span> - Car: <span th:text="${participation.car.model}"></span> - Driver: <span th:text="${participation.car.driver.name}"></span>
+            Race: <span th:text="${participation.race.name}"></span> - Date: <span th:text="${participation.race.getPrintedDate()}"></span> - Driver: <span th:text="${participation.car.driver.name}"></span>
         </li>
     </ul>
     <a href="/">Back to Homepage</a>

@@ -19,6 +19,14 @@ public class Participated {
     @JoinColumn(name = "race_id")
     private Race race;
 
+    public Participated(ParticipatedId id, Car car, Race race) {
+        this.id = id;
+        this.car = car;
+        this.race = race;
+    }
+
+    public Participated() {}
+
     public ParticipatedId getId() {
         return id;
     }

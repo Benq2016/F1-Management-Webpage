@@ -1,8 +1,10 @@
 package com.f1management.controller;
 
 import com.f1management.model.Participated;
+import com.f1management.model.ParticipatedId;
 import com.f1management.service.ParticipatedService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +28,9 @@ public class ParticipatedController {
     }
 
     @PostMapping
-    public Participated addParticipated(@RequestBody Participated participated) {
-        return participatedService.saveParticipated(participated);
+    public ResponseEntity<Participated> addParticipation(@RequestBody ParticipatedId request) {
+        Participated newParticipation = participatedService.saveParticipated(request.getCarId(), request.getRaceId());
+        return ResponseEntity.ok(newParticipation);
     }
 
     @DeleteMapping("/{carId}/{raceId}")

@@ -4,11 +4,11 @@ import com.f1management.model.Team;
 import com.f1management.model.Password;
 import com.f1management.service.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -39,9 +39,8 @@ public class WebController {
     }
 
     @GetMapping("/teams-page")
-    public String teams(Model model, @RequestParam(value = "error", required = false) String error) {
+    public String teams(Model model) {
         model.addAttribute("teams", teamService.getAllTeams());
-        model.addAttribute("error", error != null);
         return "teams";
     }
 
@@ -61,6 +60,7 @@ public class WebController {
         model.addAttribute("team", team);
         model.addAttribute("drivers", team.getDrivers());
         model.addAttribute("mechanics", team.getMechanics());
+        model.addAttribute("upcomingRaces", raceService.getUpcomingRaces());
         return "manage-team";
     }
 
@@ -86,6 +86,14 @@ public class WebController {
     public String races(Model model) {
         model.addAttribute("races", raceService.getAllRaces());
         return "races";
+    }
+
+    @GetMapping("/races-pin-check")
+    public ResponseEntity<String> checkRacePin(@RequestParam("pin") String pin) {
+        Password admin = passwordService.getPasswordByTeamID(0).orElse(null);
+        if (admin != null && admin.getPasscode().equals(pin))
+            return ResponseEntity.ok("valid");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("invalid");
     }
 
     @GetMapping("/participations-page")

@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const id = li.getAttribute('data-mechanic-id');
             const newName = prompt('Enter new mechanic name:', li.getAttribute('data-mechanic-name'));
             const newSalary = prompt('Enter new salary:', li.getAttribute('data-mechanic-salary'));
-            if (newName && newSalary) {
+            if (newName && newSalary !== '') {
                 fetch(`/mechanics/${id}`, {
                     method: 'PUT',
                     headers: {
@@ -110,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             const li = this.parentElement;
             const id = li.getAttribute('data-mechanic-id');
-            console.log(id);
             if (confirm(`Delete mechanic with ID ${id}?`)) {
                 fetch(`/mechanics/${id}`, {
                     method: 'DELETE',
@@ -172,5 +171,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 }).then(() => location.reload());
             }
         });
+    });
+
+    document.getElementById('add-participation-btn').addEventListener('click', function () {
+        const carID = document.getElementById('add-participation-car-id').value;
+        const raceID = document.getElementById('add-participation-race-id').value;
+        if (carID && raceID !== '') {
+            console.log(carID, raceID);
+            fetch('/participations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ carId: Number(carID), raceId: Number(raceID) })
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error("Participation failed");
+                    location.reload();
+                })
+                .catch(err => alert(err.message));
+        } else {
+            alert('Please enter both Car ID and Race ID.');
+        }
     });
 });

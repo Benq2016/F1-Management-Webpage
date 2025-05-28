@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="/js/race-actions.js"></script>
     <meta charset="UTF-8">
     <title>Races</title>
 </head>
@@ -12,6 +13,11 @@
             ID: <span th:text="${race.id}"></span> - Name: <span th:text="${race.name}"></span> - Location: <span th:text="${race.location}"></span> - Date: <span th:text="${race.getPrintedDate()}"></span>
         </li>
     </ul>
+    <input type="number" id="add-race-id" placeholder="Race ID" required>
+    <input type="text" id="add-race-name" placeholder="Race Name" required>
+    <input type="text" id="add-race-location" placeholder="Race Location" required>
+    <input type="date" id="add-race-date" placeholder="Race Date" required>
+    <button id="add-race-btn">Add Race</button><br>
     <a href="/">Back to Homepage</a>
 </body>
 </html>

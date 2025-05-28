@@ -43,4 +43,8 @@ public class RaceService {
                 })
                 .orElseThrow(() -> new RuntimeException("Race not found with id: " + id));
     }
+
+    public List<Race> getUpcomingRaces() {
+        return raceRepository.findByDateAfter(java.time.LocalDateTime.now());
+    }
 }
