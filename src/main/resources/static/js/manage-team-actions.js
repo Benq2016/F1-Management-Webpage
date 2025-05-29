@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.update-driver-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const li = this.parentElement;
+            const li = this.closest('li');
             const id = li.getAttribute('data-driver-id');
             const newName = prompt('Enter new driver name:', li.getAttribute('data-driver-name'));
             const newAge = prompt('Enter new driver age:', li.getAttribute('data-driver-age'));
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.delete-driver-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const li = this.parentElement;
+            const li = this.closest('li');
             const id = li.getAttribute('data-driver-id');
             if (confirm(`Delete driver with ID ${id}?`)) {
                 fetch(`/drivers/${id}`, {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.update-mechanic-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const li = this.parentElement;
+            const li = this.closest('li');
             const id = li.getAttribute('data-mechanic-id');
             const newName = prompt('Enter new mechanic name:', li.getAttribute('data-mechanic-name'));
             const newSalary = prompt('Enter new salary:', li.getAttribute('data-mechanic-salary'));
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.delete-mechanic-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const li = this.parentElement;
+            const li = this.closest('li');
             const id = li.getAttribute('data-mechanic-id');
             if (confirm(`Delete mechanic with ID ${id}?`)) {
                 fetch(`/mechanics/${id}`, {
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.update-car-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const li = this.parentElement;
+            const li = this.closest('li');
             const id = li.getAttribute('data-car-id');
             const newModel = prompt('Enter new car model:', li.getAttribute('data-car-model'));
             if (newModel) {
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.delete-car-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const li = this.parentElement;
+            const li = this.closest('li');
             const id = li.getAttribute('data-car-id');
             if (confirm(`Delete car with ID ${id}?`)) {
                 fetch(`/cars/${id}`, {

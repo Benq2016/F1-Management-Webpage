@@ -2,85 +2,201 @@
 <html lang="en">
 <head>
     <script src="/js/manage-team-actions.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Manage Team</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel=stylesheet href="/css/custom-looks.css">
 </head>
-<body th:attr="data-team-id=${team.id}">
+<body class="manage-team-page" th:attr="data-team-id=${team.id}">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark custom-red">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Homepage</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teams-page">Teams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/drivers-page">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mechanics-page">Mechanics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cars-page">Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/races-page">Races</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/participations-page">Participation's</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-3" style="text-align: center">
     <h1>Team: <span th:text="${team.name}"></span></h1>
-    <button id="change-team-name-btn">Change Team Name</button>
+    <button id="change-team-name-btn" style="font-weight: bold; max-width: 200px;">Change Team Name</button>
+</div>
+<div class="container-fluid mt-3">
+    <div class="card mt-3" style="max-width: 500px;">
+        <h2 class="container-fluid mt-2">Drivers:</h2>
+        <ul id="drivers-list">
+            <li th:each="driver : ${team.drivers}"
+                th:attr= "data-driver-id=${driver.id}, data-driver-name=${driver.name}, data-driver-age=${driver.age}"
+                style="display: flex; justify-content: space-between; align-items: center; padding: 0.1rem 0.5rem;">
+                <div>
+                    ID: <span th:text="${driver.id}"></span> - Name: <span th:text="${driver.name}"></span> - Age: <span th:text="${driver.age}"></span>
+                </div>
+                <div>
+                    <button class="delete-driver-btn" style="font-weight: bold">Delete</button>
+                    <button class="update-driver-btn" style="font-weight: bold">Update</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card mt-3" style="max-width: 350px;">
+        <h3 class="container-fluid mt-2">Add New Driver</h3>
+        <div class="container mt-1" style="display: flex; flex-direction: column; gap: 0.3rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-driver-id">ID: </label>
+                <input type="number" id="add-driver-id" placeholder="Driver ID" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-driver-name">Name: </label>
+                <input type="text" id="add-driver-name" placeholder="Driver Name" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-driver-age">Age: </label>
+                <input type="number" id="add-driver-age" placeholder="Driver Age" required>
+            </div>
+            <div>
+                <button id="add-driver-btn" style="font-weight: bold" class="mb-2">Add Driver</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <h2>Drivers:</h2>
-    <ul id="drivers-list">
-        <li th:each="driver : ${team.drivers}"
-            th:attr= "data-driver-id=${driver.id}, data-driver-name=${driver.name}, data-driver-age=${driver.age}">
-            ID: <span th:text="${driver.id}"></span> - Name: <span th:text="${driver.name}"></span> - Age: <span th:text="${driver.age}"></span>
-            <button class="delete-driver-btn">Delete</button>
-            <button class="update-driver-btn">Update</button>
-        </li>
-    </ul>
-    <h3>Add New Driver</h3>
-    <label for="add-driver-id"></label>
-    <input type="number" id="add-driver-id" placeholder="Driver ID" required>
-    <label for="add-driver-name"></label>
-    <input type="text" id="add-driver-name" placeholder="Driver Name" required>
-    <label for="add-driver-age"></label>
-    <input type="number" id="add-driver-age" placeholder="Driver Age" required>
-    <button id="add-driver-btn">Add Driver</button>
 
-    <h2>Mechanics:</h2>
-    <ul id="mechanics-list">
-        <li th:each="mechanic : ${team.mechanics}"
-            th:attr= "data-mechanic-id=${mechanic.id}, data-mechanic-name=${mechanic.name}, data-mechanic-salary=${mechanic.salary}">
-            ID: <span th:text="${mechanic.id}"></span> - Name: <span th:text="${mechanic.name}"></span> - Salary: <span th:text="${mechanic.salary}"></span>
-            <button class="delete-mechanic-btn">Delete</button>
-            <button class="update-mechanic-btn" >Update</button>
-        </li>
-    </ul>
-    <h3>Add New Mechanic</h3>
-    <label for="add-mechanic-id"></label>
-    <input type="number" id="add-mechanic-id" placeholder="Mechanic ID" required>
-    <label for="add-mechanic-name"></label>
-    <input type="text" id="add-mechanic-name" placeholder="Mechanic Name" required>
-    <label for="add-mechanic-salary"></label>
-    <input type="number" id="add-mechanic-salary" placeholder="Mechanic Salary" required>
-    <button id="add-mechanic-btn">Add Mechanic</button>
+<div class="container-fluid mt-3">
+    <div class="card mt-3" style="max-width: 500px;">
+        <h2 class="container-fluid mt-2">Mechanics:</h2>
+        <ul id="mechanics-list">
+            <li th:each="mechanic : ${team.mechanics}"
+                th:attr= "data-mechanic-id=${mechanic.id}, data-mechanic-name=${mechanic.name}, data-mechanic-salary=${mechanic.salary}"
+                style="display: flex; justify-content: space-between; align-items: center; padding: 0.1rem 0.5rem;">
+                <div>
+                    ID: <span th:text="${mechanic.id}"></span> - Name: <span th:text="${mechanic.name}"></span> - Salary: <span th:text="${mechanic.salary}"></span>
+                </div>
+                <div>
+                    <button class="delete-mechanic-btn" style="font-weight: bold">Delete</button>
+                    <button class="update-mechanic-btn" style="font-weight: bold">Update</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card mt-3" style="max-width: 350px;">
+        <h3 class="container-fluid mt-2">Add New Mechanic</h3>
+        <div class="container mt-1" style="display: flex; flex-direction: column; gap: 0.3rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-mechanic-id">ID: </label>
+                <input type="number" id="add-mechanic-id" placeholder="Mechanic ID" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-mechanic-name">Name: </label>
+                <input type="text" id="add-mechanic-name" placeholder="Mechanic Name" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-mechanic-salary">Salary: </label>
+                <input type="number" id="add-mechanic-salary" placeholder="Mechanic Salary" required>
+            </div>
+            <div>
+                <button id="add-mechanic-btn" style="font-weight: bold" class="mb-2">Add Mechanic</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <h2>Cars:</h2>
-    <ul id="cars-list">
-        <li th:each="car : ${team.cars}"
-            th:attr= "data-car-id=${car.id}, data-car-model=${car.model}">
-            ID: <span th:text="${car.id}"></span> - Model: <span th:text="${car.model}"></span> - Driver: <span th:text="${car.driver.name}"></span> - Mechanic: <span th:text="${car.mechanic.name}"></span>
-            <button class="delete-car-btn">Delete</button>
-            <button class="update-car-btn">Update</button>
-        </li>
-    </ul>
-    <h3>Add New Car</h3>
-    <label for="add-car-id"></label>
-    <input type="number" id="add-car-id" placeholder="Car ID" required>
-    <label for="add-car-model"></label>
-    <input type="text" id="add-car-model" placeholder="Car Model" required>
-    <label for="add-car-driver-id"></label>
-    <input type="number" id="add-car-driver-id" placeholder="Driver ID" required>
-    <label for="add-car-mechanic-id"></label>
-    <input type="number" id="add-car-mechanic-id" placeholder="Mechanic ID" required>
-    <button id="add-car-btn">Add Car</button>
+<div class="container-fluid mt-3">
+    <div class="card mt-3" style="max-width: 700px;">
+        <h2 class="container-fluid mt-2">Cars:</h2>
+        <ul id="cars-list">
+            <li th:each="car : ${team.cars}"
+                th:attr= "data-car-id=${car.id}, data-car-model=${car.model}"
+                style="display: flex; justify-content: space-between; align-items: center; padding: 0.1rem 0.5rem;">
+                <div>
+                    ID: <span th:text="${car.id}"></span> - Model: <span th:text="${car.model}"></span> - Driver: <span th:text="${car.driver.name}"></span> - Mechanic: <span th:text="${car.mechanic.name}"></span>
+                </div>
+                <div>
+                    <button class="delete-car-btn" style="font-weight: bold">Delete</button>
+                    <button class="update-car-btn" style="font-weight: bold">Update</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card mt-3" style="max-width: 400px;">
+        <h3 class="container-fluid mt-2">Add New Car</h3>
+        <div class="container mt-1" style="display: flex; flex-direction: column; gap: 0.3rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-car-id">ID: </label>
+                <input type="number" id="add-car-id" placeholder="Car ID" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-car-model">Model: </label>
+                <input type="text" id="add-car-model" placeholder="Car Model" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-car-driver-id">Driver: </label>
+                <input type="number" id="add-car-driver-id" placeholder="Driver ID" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-car-mechanic-id">Mechanic: </label>
+                <input type="number" id="add-car-mechanic-id" placeholder="Mechanic ID" required>
+            </div>
+            <div>
+                <button id="add-car-btn" style="font-weight: bold" class="mb-2">Add Car</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <h2>Upcoming Races</h2>
-    <ul id="upcoming-races-list">
-        <li th:each="race : ${upcomingRaces}"
-            th:attr="data-race-id=${race.id}">
-            ID: <span th:text="${race.id}"></span> - Name: <span th:text="${race.name}"></span> - Location: <span th:text="${race.location}"></span> - Date: <span th:text="${race.getPrintedDate()}"></span>
-        </li>
-    </ul>
+<div class="container-fluid mt-3">
+    <div class="card mt-3" style="max-width: 600px;">
+        <h2 class="container-fluid mt-2">Upcoming Races:</h2>
+        <ul id="upcoming-races-list">
+            <li th:each="race : ${upcomingRaces}"
+                th:attr="data-race-id=${race.id}"
+                style="display: flex; justify-content: space-between; align-items: center; padding: 0.1rem 0.5rem;">
+                <div>
+                    ID: <span th:text="${race.id}"></span> - Name: <span th:text="${race.name}"></span> - Location: <span th:text="${race.location}"></span> - Date: <span th:text="${race.getPrintedDate()}"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card mt-3 mb-3" style="max-width: 300px;">
+        <h3 class="container-fluid mt-2">Add New Participation</h3>
+        <div class="container mt-1" style="display: flex; flex-direction: column; gap: 0.3rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-participation-car-id">Car:</label>
+                <input type="number" id="add-participation-car-id" placeholder="Car ID" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-participation-race-id">Race:</label>
+                <input type="number" id="add-participation-race-id" placeholder="Race ID" required>
+            </div>
+            <div>
+                <button id="add-participation-btn" style="font-weight: bold" class="mb-2">Add Participation</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <h3>Add New Participation</h3>
-    <label for="add-participation-car-id">Car ID:</label>
-    <input type="number" id="add-participation-car-id" placeholder="Car ID" required>
-    <label for="add-participation-race-id">Race ID:</label>
-    <input type="number" id="add-participation-race-id" placeholder="Race ID" required>
-
-    <button id="add-participation-btn">Add Participation</button><br><br>
-
-    <a href="/teams-page">Back to Teams List</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.delete-team-btn').forEach(button => {
         button.addEventListener('click', function() {
-            const li = this.parentElement;
+            const li = this.closest('li');
             const id = li.getAttribute('data-team-id');
             const pin = prompt('Enter the 4-digit PIN code to confirm deletion:');
             if (!pin || pin.length !== 4 || !/^\d{4}$/.test(pin)) {
@@ -57,13 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.manage-team-btn').forEach(button => {
         button.addEventListener('click', function() {
-            const teamID = this.parentElement.getAttribute('data-team-id');
+            const li = this.closest('li');
+            const id = li.getAttribute('data-team-id');
             const pin = prompt('Enter 4-digit PIN code:');
             if (!pin || pin.length !== 4 || !/^\d{4}$/.test(pin)) {
                 alert('Please enter a valid 4-digit PIN code.');
                 return;
             }
-            window.location.href = `/teams/${teamID}/manage?passcode=${pin}`;
+            window.location.href = `/teams/${id}/manage?passcode=${pin}`;
         });
     });
 });

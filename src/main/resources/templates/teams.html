@@ -2,24 +2,79 @@
 <html lang="en">
 <head>
     <script src="/js/team-actions.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Teams</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel=stylesheet href="/css/custom-looks.css">
 </head>
-<body>
-    <h1>Teams List</h1>
-    <ul id="teams-list">
-        <li th:each="team : ${teams}"
-            th:attr= "data-team-id=${team.id}, data-team-name=${team.name}">
-            ID: <span th:text="${team.id}"></span> - Name: <span th:text="${team.name}"></span>
-            <button class="delete-team-btn">Delete</button>
-            <button class="manage-team-btn">Manage</button>
-        </li>
-    </ul>
-    <h2>Add New Team</h2>
-    <input type="number" id="add-team-id" placeholder="Team ID" required>
-    <input type="text" id="add-team-name" placeholder="Team Name" required>
-    <button id="add-team-btn">Add</button><br><br>
-
-    <a href="/">Back to Homepage</a>
+<body class="teams-page">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark custom-red">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Homepage</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teams-page">Teams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/drivers-page">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mechanics-page">Mechanics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cars-page">Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/races-page">Races</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/participations-page">Participation's</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid mt-3 mb-3">
+    <h1>Teams Page</h1>
+    <div class="card mt-3" style="max-width: 500px;">
+        <h3 class="container-fluid mt-1">Teams List:</h3>
+        <ul id="teams-list">
+            <li th:each="team : ${teams}"
+                th:attr= "data-team-id=${team.id}, data-team-name=${team.name}"
+                style="display: flex; justify-content: space-between; align-items: center; padding: 0.1rem 0.5rem;">
+                <div>
+                    ID: <span th:text="${team.id}"></span> - Name: <span th:text="${team.name}"></span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="delete-team-btn" style="font-weight: bold">Delete</button>
+                    <button class="manage-team-btn" style="font-weight: bold">Manage</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card mt-3 mb-3" style="max-width: 350px;">
+        <h3 class="container-fluid mt-1">Add New Team</h3>
+        <div class="container mt-1" style="display: flex; flex-direction: column; gap: 0.3rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-team-id">Team ID:</label>
+                <input type="number" id="add-team-id" placeholder="ID" required>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="add-team-name">Team Name:</label>
+                <input type="text" id="add-team-name" placeholder="Name" required>
+            </div>
+            <div>
+                <button id="add-team-btn" style="font-weight: bold" class="mb-2">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

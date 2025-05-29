@@ -2,15 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drivers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel=stylesheet href="/css/custom-looks.css">
 </head>
-<body>
-    <h1>Drivers List</h1>
-    <ul id="drivers-list">
-        <li th:each="driver : ${drivers}">
-            ID: <span th:text="${driver.id}"></span> - Name: <span th:text="${driver.name}"></span> - Age: <span th:text="${driver.age}"></span> - Team: <span th:text="${driver.team.name}"></span>
-        </li>
-    </ul>
-    <a href="/">Back to Homepage</a>
+<body class="drivers-page">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark custom-red">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Homepage</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/teams-page">Teams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/drivers-page">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mechanics-page">Mechanics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cars-page">Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/races-page">Races</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/participations-page">Participation's</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid mt-3 mb-3">
+    <h1>Drivers Page</h1>
+    <div class="card mt-3" style="max-width: 650px;">
+        <h3 class="container-fluid mt-1">Drivers List:</h3>
+        <ul id="drivers-list">
+            <li th:each="driver : ${drivers}"
+                style="display: flex; justify-content: space-between; align-items: center; padding: 0.1rem 0.5rem;">
+                <div>
+                    ID: <span th:text="${driver.id}"></span> - Name: <span th:text="${driver.name}"></span> - Age: <span th:text="${driver.age}"></span> - Team: <span th:text="${driver.team.name}"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

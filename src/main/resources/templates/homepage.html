@@ -1,20 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>F1 Management System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>F1 Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel=stylesheet href="/css/custom-looks.css">
 </head>
-<body>
-  <h1>Welcome to the F1 Management System!</h1>
+<body class="homepage">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark custom-red">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Homepage</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/teams-page">Teams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/drivers-page">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mechanics-page">Mechanics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cars-page">Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/races-page">Races</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/participations-page">Participation's</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container mt-3">
+        <div class="d-flex justify-content-center">
+            <h1>Welcome to the F1 Management System!</h1>
+        </div>
 
-  <h2>Selections:</h2>
-  <ul>
-    <li><a href="/teams-page">Teams</a></li>
-    <li><a href="/drivers-page">Drivers</a></li>
-    <li><a href="/mechanics-page">Mechanics</a></li>
-    <li><a href="/cars-page">Cars</a></li>
-    <li><a href="/races-page">Races</a></li>
-    <li><a href="/participations-page">Participation's</a></li>
-  </ul>
+        <div>
+            <h3 class="mt-4">The purpose of this Website:</h3>
+            <p>
+                This Website is part of a course project for the 'Web Development' course at the 'Babes-Bolyai University' in Cluj-Napoca, Romania.<br>
+                The project is a simple application for managing one or more F1 Teams. The application is divided into six main sections:
+            <ul>
+                <li>Teams</li>
+                <li>Drivers</li>
+                <li>Mechanics</li>
+                <li>Cars</li>
+                <li>Races</li>
+                <li>Participation's</li>
+            </ul>
+            Each section has its own page, where the user can view data or add, delete, edit data under the 'Teams' section.
+        </div>
+
+        <div>
+            <h3 class="mt-4">Here is a brief summary of the application:</h3>
+            <p>
+                <strong>Homepage:</strong> A central page, where the application's description can be found.<br>
+                <strong>Teams page:</strong> On this page new teams can be added, or older ones edited/deleted. Once a new team is added it can be managed using a passcode which must be provided on the first attempt to manage the team. Once it is added, there is no possibility to change or to recover the passcode yet, so it is recommended to save it somewhere. Under 'Team Management' drivers, mechanics, cars and participation's of a specific team can be managed.<br><strong>It is strongly recommended for IDs to give a custom team-based id: ex. for team 1 --> id: 1x (where x is the wanted id of the entity/object)</strong><br>
+                <strong>Drivers page:</strong> This is a 'View only page' where the added drivers can be seen. Drivers can be managed only in the 'Team Management' section.<br>
+                <strong>Mechanics page:</strong> This is a 'View only page' where the added mechanics can be seen. Mechanics can be managed only in the 'Team Management' section.<br>
+                <strong>Cars page:</strong> This is a 'View only page' where the added cars can be seen. Cars can be managed only in the 'Team Management' section.<br>
+                <strong>Races page:</strong> On this page new races can be added by the Race Manager via entering his passcode (only known by him).<br>
+                <strong>Participation's page:</strong> This is a 'View only page' where the added participation can be seen. Participation's can be managed only in the 'Team Management' section.<br>
+            </p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
