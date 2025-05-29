@@ -4,7 +4,6 @@ import com.f1management.model.Mechanic;
 import com.f1management.repository.MechanicRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
